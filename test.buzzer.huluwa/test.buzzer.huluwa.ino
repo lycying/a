@@ -83,7 +83,7 @@ float duration[]=
   1+1+1+1
 };//这部分是整首曲子的接拍部分，也定义个序列duration，浮点（数组的个数和前面音符的个数是一样的，一一对应么）
 int length;//这里定义一个变量，后面用来表示共有多少个音符
-int tonePin=9;//蜂鸣器的pin
+int tonePin=10;//蜂鸣器的pin
 
 void setup()
 {

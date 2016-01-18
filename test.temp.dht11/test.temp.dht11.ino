@@ -1,6 +1,6 @@
 #include <dht.h>
 dht DHT;
-#define DHT11_PIN 8//put the sensor in the digital pin 4
+#define DHT11_PIN 11//put the sensor in the digital pin 4
 void setup()
 {
   Serial.begin(9600);
