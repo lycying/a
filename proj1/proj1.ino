@@ -16,6 +16,8 @@
 #define HC_SR501_PIN 12
 //蜂鸣器
 #define TONE_PIN 10
+//LCD另外一个亮度,避免了5V供电晚上太亮
+#define LCD_LIGHT 9
 
 LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 dht DHT;
@@ -70,30 +72,30 @@ void lightProcess(){
         dayTime = 1;
         Sch.deleteTask(lightPid);
         lightOff();
+
+        digitalWrite(LCD_LIGHT,HIGH);
         lcd.setCursor(0, 1);
         lcd.print("Day Time!!");
 
-        tone(TONE_PIN,262);
-        delay(100); 
-        tone(TONE_PIN,293);
-        delay(100); 
-        tone(TONE_PIN,329);
-        delay(100); 
-        tone(TONE_PIN,349);
-        delay(100); 
+        tone(TONE_PIN,1484);
+        delay(10); 
         noTone(TONE_PIN);
       }
   }
 }
 void lightOn(){
-  digitalWrite(LIGHT_PIN,HIGH);
+  digitalWrite(LCD_LIGHT,HIGH);
   lcd.setCursor(0, 1);
   lcd.print("Light On! ");
+
+  digitalWrite(LIGHT_PIN,HIGH);
   Sch.deleteTask(lightPid);
   lightPid = Sch.addTask(lightOff,1000*10,0,1);
 }
 void lightOff(){
   digitalWrite(LIGHT_PIN,LOW);
+
+  digitalWrite(LCD_LIGHT,LOW);
   lcd.setCursor(0, 1);
   lcd.print("Light Off!");
 }
